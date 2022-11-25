@@ -1,0 +1,31 @@
+<h1>Angular Weather App</h1>
+<p>Select a country to get started</p>
+
+<select [(ngModel)]="selectedCountry" (change)="getWeatherInfo()">
+  <option *ngFor="let country of countries" value="{{ country }}">
+    {{ country }}
+  </option>
+</select>
+<div *ngIf="weatherData">
+  <h1>Weather in {{ selectedCountry }}</h1>
+  <h2>Temperature</h2>
+  <div>
+    <span>Temperature: {{ weatherData.main.temp }}</span>
+    <span>Max Temperature: {{ weatherData.main.temp_min }}</span>
+    <span>Min Temperature: {{ weatherData.main.temp_max }}</span>
+  </div>
+  <h2>Humidity</h2>
+  <div>
+    <span>Humidity: {{ weatherData.main.humidity }}</span>
+  </div>
+  <h2>Wind</h2>
+  <div>
+    <span
+      >Speed of wind is <b>{{ weatherData.wind.speed }}</b> at
+      <b>{{ weatherData.wind.deg }}</b> degrees.</span
+    >
+    <span *ngIf="weatherData.wind.gust"
+      >Gust in the air can be <b><i>{{ weatherData.wind.gust }}</i></b></span
+    >
+  </div>
+</div>
